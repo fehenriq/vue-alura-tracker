@@ -1,5 +1,5 @@
 <template>
-  <header class="has-text-centered	">
+  <header class="has-text-centered">
     <h1>
       <img src="../assets/logo.png" alt="">
     </h1>
