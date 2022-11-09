@@ -2,28 +2,10 @@
   <div class="box">
     <div class="columns">
       <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
-        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
+        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" v-model="descricao">
       </div>
       <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <section>
-            <strong>
-              {{ tempoDecorrido }}
-            </strong>
-          </section>
-          <button class="button" @click="iniciar">
-            <span class="icon">
-              <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-          </button>
-          <button class="button" @click="finalizar">
-            <span class="icon">
-              <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <Temporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
       </div>
     </div>
   </div>
@@ -31,28 +13,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Temporizador from './Temporizador.vue';
 
 export default defineComponent({
-  name: 'FormulárioBase',
+  name: "FormulárioBase",
+  components: { Temporizador },
   data () {
     return {
-      tempoEmSegundos: 0,
-      cronometro: 0
-    }
-  },
-  computed: {
-    tempoDecorrido () : string {
-      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11, 8)
+      descricao: ''
     }
   },
   methods: {
-    iniciar () {
-      this.cronometro = setInterval(() => {
-        this.tempoEmSegundos += 1
-      }, 1000)
-    },
-    finalizar () {
-      clearInterval(this.cronometro)
+    finalizarTarefa (tempoDecorrido: number) : void {
+      console.log('%cFormulario.vue line:28 tempo da tarefa', 'color: #007acc;', tempoDecorrido)
+      console.log('%cFormulario.vue line:29 descricao da tarefa', 'color: #007acc;', this.descricao);
+      this.descricao = ''
     }
   }
 });
