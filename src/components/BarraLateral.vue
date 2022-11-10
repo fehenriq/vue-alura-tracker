@@ -3,7 +3,7 @@
     <h1>
       <img src="../assets/logo.png" alt="">
     </h1>
-    <button class="button is-large" @click="alterarTema">
+    <button role="trocarTema" class="button is-large" @click="alterarTema">
       <span class="icon">
         <i class="fas fa-lg" :class="iconeBotao"></i>
       </span>
